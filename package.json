@@ -139,6 +139,7 @@
 		"fluent-ffmpeg": "2.1.2",
 		"glob": "7.1.6",
 		"got": "11.7.0",
+		"graphql": "15.4.0",
 		"gulp": "4.0.2",
 		"gulp-rename": "2.0.0",
 		"gulp-replace": "1.0.0",
@@ -166,6 +167,7 @@
 		"koa": "2.13.0",
 		"koa-bodyparser": "4.3.0",
 		"koa-favicon": "2.1.0",
+		"koa-graphql": "0.8.0",
 		"koa-json-body": "5.3.0",
 		"koa-logger": "3.2.1",
 		"koa-mount": "4.0.0",
@@ -262,6 +264,7 @@
 	"devDependencies": {
 		"@types/chai": "4.2.11",
 		"@types/fluent-ffmpeg": "2.1.14",
+		"@types/koa-graphql": "0.8.4",
 		"chai": "4.2.0",
 		"cross-env": "7.0.2"
 	}

@@ -12,6 +12,7 @@ import * as mount from 'koa-mount';
 import * as koaLogger from 'koa-logger';
 import * as requestStats from 'request-stats';
 import * as slow from 'koa-slow';
+import * as graphqlHTTP from 'koa-graphql';
 
 import activityPub from './activitypub';
 import nodeinfo from './nodeinfo';
@@ -25,6 +26,7 @@ import { UserProfiles } from '../models';
 import { networkChart } from '../services/chart';
 import { genAvatar } from '../misc/gen-avatar';
 import { createTemp } from '../misc/create-temp';
+import { MisskeyGraphQLSchema } from './graphql';
 
 export const serverLogger = new Logger('server', 'gray', false);
 
@@ -58,6 +60,12 @@ if (config.url.startsWith('https') && !config.disableHsts) {
 app.use(mount('/api', apiServer));
 app.use(mount('/files', require('./file')));
 app.use(mount('/proxy', require('./proxy')));
+
+// GraphQL
+app.use(mount('/graphql', graphqlHTTP({
+	schema: MisskeyGraphQLSchema,
+	graphiql: true
+})));
 
 // Init router
 const router = new Router();
