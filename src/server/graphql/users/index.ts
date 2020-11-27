@@ -1,4 +1,10 @@
-import {GraphQLBoolean, GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString} from 'graphql';
+import {
+	GraphQLBoolean,
+	GraphQLInt,
+	GraphQLNonNull,
+	GraphQLObjectType,
+	GraphQLString
+} from 'graphql';
 import {ScalarDateTime} from '../common';
 
 export const UsersQueryType = new GraphQLObjectType({

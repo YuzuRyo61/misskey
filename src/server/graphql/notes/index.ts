@@ -1,4 +1,4 @@
-import {GraphQLBoolean, GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString} from 'graphql';
+import {GraphQLBoolean, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString} from 'graphql';
 
 import {ScalarDateTime} from '../common';
 
@@ -6,7 +6,7 @@ export const NotesQueryType = new GraphQLObjectType({
 	name: 'UserQuery',
 	fields: {
 		id: {
-			type: GraphQLNonNull(GraphQLID),
+			type: GraphQLNonNull(GraphQLList(GraphQLID)),
 			description: 'Note\'s ID'
 		},
 		createdAt: {

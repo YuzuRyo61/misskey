@@ -1,7 +1,7 @@
-import {GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString} from 'graphql';
+import {GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString} from 'graphql';
 import { NotesQueryType } from './notes';
+import { UsersQueryType } from './users';
 import NotesQuery from './notes/query';
-import {UsersQueryType} from './users';
 import UsersQuery from './users/query';
 
 export const MisskeyGraphQLSchema = new GraphQLSchema({
@@ -9,14 +9,15 @@ export const MisskeyGraphQLSchema = new GraphQLSchema({
 		name: 'MisskeyGraphQLQuery',
 		fields: {
 			notes: {
-				type: NotesQueryType,
+				type: GraphQLList(NotesQueryType),
 				args: {
-					id: { type: GraphQLNonNull(GraphQLString) }
+					id: { type: GraphQLNonNull(GraphQLList(GraphQLID)) }
 				},
 				resolve(_, {id}) {
 					return NotesQuery(id);
 				}
 			},
+			// TODO: 複数のユーザーで取得できるようにしたい
 			users: {
 				type: UsersQueryType,
 				args: {
