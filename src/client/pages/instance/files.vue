@@ -34,7 +34,7 @@
 					<span>{{ $t('type') }}</span>
 				</MkInput>
 			</div>
-			<MkPagination :pagination="pagination" #default="{items}" class="urempief" ref="files" :auto-margin="false">
+			<MkPagination :pagination="pagination" #default="{items}" class="urempief" ref="files">
 				<button class="file _panel _button _vMargin" v-for="file in items" :key="file.id" @click="show(file, $event)">
 					<MkDriveFileThumbnail class="thumbnail" :file="file" fit="contain"/>
 					<div class="body">
@@ -84,10 +84,8 @@ export default defineComponent({
 	data() {
 		return {
 			INFO: {
-				header: [{
-					title: this.$t('files'),
-					icon: faCloud
-				}],
+				title: this.$t('files'),
+				icon: faCloud
 			},
 			q: null,
 			origin: 'local',
@@ -131,8 +129,8 @@ export default defineComponent({
 			});
 		},
 
-		async show(file, ev) {
-			os.popup(await import('./file-dialog.vue'), {
+		show(file, ev) {
+			os.popup(import('./file-dialog.vue'), {
 				fileId: file.id
 			}, {}, 'closed');
 		},
