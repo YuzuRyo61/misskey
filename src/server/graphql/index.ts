@@ -1,8 +1,10 @@
 import {GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString} from 'graphql';
 import { NotesQueryType } from './notes';
 import { UsersQueryType } from './users';
+import {MetaQueryType} from './meta';
 import NotesQuery from './notes/query';
 import UsersQuery from './users/query';
+import MetaQuery from './meta/query';
 
 export const MisskeyGraphQLSchema = new GraphQLSchema({
 	query: new GraphQLObjectType({
@@ -27,6 +29,12 @@ export const MisskeyGraphQLSchema = new GraphQLSchema({
 				},
 				resolve(_, {id, username, host}) {
 					return UsersQuery(id, username, host);
+				}
+			},
+			meta: {
+				type: MetaQueryType,
+				resolve() {
+					return MetaQuery();
 				}
 			}
 		}
