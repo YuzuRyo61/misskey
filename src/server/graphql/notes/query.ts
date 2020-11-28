@@ -4,7 +4,7 @@ import {getNote} from '../../api/common/getters';
 import {Notes} from '../../../models';
 import {Note} from '../../../models/entities/note';
 
-export default async (id: string[]) => {
+export const NotesQuery = async (id: string[]) => {
 	const result: Note[] = [];
 	for (const one_id of id) {
 		const data = await getNote(one_id).catch(_ => {});

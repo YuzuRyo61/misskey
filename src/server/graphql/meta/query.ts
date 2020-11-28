@@ -3,7 +3,7 @@ import config from '../../../config';
 import {DB_MAX_NOTE_TEXT_LENGTH} from '../../../misc/hard-limits';
 import {Users} from '../../../models';
 
-export default async () => {
+export const MetaQuery = async () => {
 	const instance = await fetchMeta(true);
 	const proxyAccount = instance.proxyAccountId ? await Users.pack(instance.proxyAccountId).catch(() => null) : null;
 

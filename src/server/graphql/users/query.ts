@@ -2,7 +2,7 @@ import {GraphQLError} from 'graphql';
 import {resolveUser} from '../../../remote/resolve-user';
 import {Users} from '../../../models';
 
-export default async (
+export const UsersQuery = async (
 	id: string | null,
 	username: string | null,
 	host: string | null) => {
