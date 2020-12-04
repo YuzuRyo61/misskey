@@ -13,7 +13,8 @@ export const MisskeyGraphQLSchema = new GraphQLSchema({
 			notes: {
 				type: GraphQLList(NotesQueryType),
 				args: {
-					id: { type: GraphQLNonNull(GraphQLList(GraphQLID)) }
+					id: { type: GraphQLNonNull(GraphQLList(
+						GraphQLNonNull(GraphQLID))) }
 				},
 				resolve(_, {id}) {
 					return NotesQuery(id);
@@ -32,7 +33,7 @@ export const MisskeyGraphQLSchema = new GraphQLSchema({
 				}
 			},
 			meta: {
-				type: MetaQueryType,
+				type: GraphQLNonNull(MetaQueryType),
 				resolve() {
 					return MetaQuery();
 				}

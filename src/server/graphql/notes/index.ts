@@ -1,10 +1,11 @@
-import {GraphQLBoolean, GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString} from 'graphql';
+import {GraphQLBoolean, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString} from 'graphql';
 
 import {ScalarDateTime} from '../common';
 import {UsersQueryType} from '../users';
+import {DriveFileQueryType} from '../drive';
 
 export const NotesQueryType = new GraphQLObjectType({
-	name: 'UserQuery',
+	name: 'NotesQuery',
 	fields: {
 		id: {
 			type: GraphQLNonNull(GraphQLID),
@@ -33,10 +34,29 @@ export const NotesQueryType = new GraphQLObjectType({
 			type: GraphQLID
 		},
 		viaMobile: {
-			type: GraphQLBoolean
+			type: GraphQLNonNull(GraphQLBoolean)
+		},
+		isHidden: {
+			type: GraphQLNonNull(GraphQLBoolean)
 		},
 		visibility: {
 			type: GraphQLString
+		},
+		mentions: {
+			type: GraphQLList(GraphQLID)
+		},
+		visibleUserIds: {
+			type: GraphQLList(GraphQLID)
+		},
+		fileIds: {
+			type: GraphQLList(GraphQLID)
+		},
+		files: {
+			type: GraphQLNonNull(GraphQLList(
+				GraphQLNonNull(DriveFileQueryType)))
+		},
+		tags: {
+			type: GraphQLList(GraphQLNonNull(GraphQLString))
 		}
 	}
 });
